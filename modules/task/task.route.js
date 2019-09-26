@@ -47,4 +47,11 @@ taskRoutes.route('/update/:id').post(function(req, res){
    });
 });
 
+taskRoutes.route('/delete/:id').delete(function(req, res){
+    Task.findByIdAndRemove({ _id: req.params.id }, function (err) {
+        if(err) res.json(err);
+        else res.json ('successfully deleted task');
+    })
+});
+
 module.exports = taskRoutes;
